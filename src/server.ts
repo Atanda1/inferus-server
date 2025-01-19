@@ -13,5 +13,3 @@ app.listen(3000, () => {
 });
 
 module.exports = app;  
-
- // postgresql://inferus_db_user:ER5kkVs5F8DMN1KD2xUHPpTF5w6teGVI@dpg-cu69o3d2ng1s73bne580-a.oregon-postgres.render.com/inferus_db
