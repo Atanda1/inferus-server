@@ -14,20 +14,51 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
-  createdAt DateTime @default(now())
-  username String @unique
-  password String 
-  products Product[]
+  id        String    @id @default(uuid())
+  createdAt DateTime  @default(now())
+  username  String    @unique
+  password  String
+  products  Product[]
 }
 
 model Product {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  name        String
+  price       Float
+  description String
+  image       String
+  belongsToId String
+  belongsTo   User     @relation(fields: [belongsToId], references: [id])
+  updates      Update[]
+}
+
+enum UPDATE_STATUSES {
+  PENDING
+  SHIPPED
+  DEPRECATED
+}
+
+model Update {
+  id        String          @id @default(uuid())
+  createdAt DateTime        @default(now())
+  updatedAt DateTime
+  status    UPDATE_STATUSES @default(PENDING)
+  version   String?
+  asset     String?
+
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+}
+
+model UpdatePoint {
   id String @id @default(uuid())
   createdAt DateTime @default(now())
-  name String
-  price Float
+  updatedAt DateTime
+
+  name String @db.VarChar(255)
   description String
-  image String
-  belongsToId String
-  belongsTo User @relation(fields: [belongsToId], references: [id])
+
+  updateId String
+  update Update @relation(fields: [updateId], references: [id])
 }
