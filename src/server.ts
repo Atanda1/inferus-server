@@ -1,15 +1,13 @@
-const express = require("express");
+import express from "express";
+import router from "./router";
 
 const app = express();
 
 app.get("/", (req, res) => {
-  console.log("hello from express");
   res.status(200);
-  res.send({ message: "Hello World!" });
+  res.json({ message: "Hello from express" });
 });
 
-app.listen(3000, () => { 
-    console.log("Server is running on port 3000, http://localhost:3000");
-});
+app.use("/api", router);
 
-module.exports = app;  
+export default app;

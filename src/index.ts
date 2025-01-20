@@ -1,12 +1,8 @@
-const http = require('http');
+import * as dotenv from "dotenv";
+dotenv.config();
 
-const server = http.createServer((req, res) => { 
-    if (req.method === 'GET' && req.url === '/') { 
-        res.statusCode(200);
-        res.end()
-    }
-});
+import  app  from "./server";
 
-server.listen(3000, () => {
-    console.log('Server is running on port 3000, http://localhost:3000');
+app.listen(3001, () => {
+  console.log("hello on http://localhost:3001");
 });
