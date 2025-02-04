@@ -4,8 +4,8 @@ const router = Router();
 
 // Product routes
 
-router.get("/product", (req, res) =>
-  res.json({ message: req.shhh_secret })
+router.get("/product", (req, res) => 
+   res.json({ message: req.shhh_secret })
 );
 
 router.get("/product/:id", (req, res) => {});
