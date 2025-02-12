@@ -8,6 +8,8 @@ import {
   getOneProduct,
   deleteProduct,
 } from "./controllers/products";
+import { createUpdate, deleteUpdate, getOneUpdate, getUpdates, updateUpdate } from "./controllers/update";
+import { create } from "domain";
 
 const router = Router();
 
@@ -27,22 +29,20 @@ router.delete("/product/:id", deleteProduct);
 
 // Update routes
 
-router.get("/update", (req, res) => {});
-router.get("/update/:id", (req, res) => {});
+router.get("/update", getUpdates);
+router.get("/update/:id", getOneUpdate);
 router.put(
   "/update/:id",
   updateValidationRules,
-  updateProduct,
-
-  (req, res) => {}
+  updateUpdate
 );
 router.post(
   "/update",
   body("title").exists().isString(),
   body("body").optional().isString(),
-  (req, res) => {}
+  createUpdate
 );
-router.delete("/update/:id", (req, res) => {});
+router.delete("/update/:id", deleteUpdate);
 
 // Update Point routes
 
